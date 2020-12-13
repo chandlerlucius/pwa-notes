@@ -1,5 +1,5 @@
-# pwa-starter-template
-A template used to begin work on a PWA (Progressive Web App)
+# pwa-notes
+A Progressive Web App for keeping notes
 
 Live Example:  
-https://chandlerlucius.github.io/pwa-starter-template/
+https://chandlerlucius.github.io/pwa-notes
