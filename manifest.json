@@ -1,0 +1,27 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "PWA Starter Template",
+    "scope": ".",
+    "display": "standalone",
+    "start_url": "https://chandlerlucius.github.io/pwa-starter-template/",
+    "short_name": "PWA Starter Template",
+    "theme_color": "#01579B",
+    "description": "A template used to begin work on a PWA (Progressive Web App)",
+    "orientation": "Portrait",
+    "background_color": "#212121",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "images/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ]
+}

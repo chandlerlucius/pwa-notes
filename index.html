@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="author" content="Chandler Lucius">
+  <meta name="title" content="PWA Starter Template" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A template used to begin work on a PWA (Progressive Web App)" />
+
+  <meta name="theme-color" content="#01579B" />
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-config" content="./images/icons/browserconfig.xml">
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/icons/favicon-16x16.png">
+  <link rel="mask-icon" href="./images/icons/safari-pinned-tab.svg" color="#01579B">
+  <link rel="shortcut icon" href="./images/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/apple-touch-icon.png">
+
+  <title>PWA Starter Template</title>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => {
+            console.log('Service worker registered!', reg);
+          })
+          .catch(err => {
+            console.log('Service worker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <h1>PWA Starter Template</h1>
+</body>
+
+</html>
