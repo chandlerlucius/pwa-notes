@@ -1,0 +1,10 @@
+.bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.add-note-button {
+    display: inline-block;
+    float: right;
+}
