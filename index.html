@@ -13,6 +13,8 @@
   <meta name="theme-color" content="#01579B" />
   <meta name="msapplication-TileColor" content="#FFFFFF">
   <meta name="msapplication-config" content="./images/icons/browserconfig.xml">
+  
+  <title>PWA Starter Template</title>
 
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="32x32" href="./images/icons/favicon-32x32.png">
@@ -22,8 +24,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./images/icons/apple-touch-icon.png">
   
   <link rel="stylesheet" href="./css/main.css">
-
-  <title>PWA Starter Template</title>
+  <script src="./js/commonmark-0.29.min.js"></script>
+  <script src="./js/markdown-preview.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
@@ -48,9 +50,9 @@
     <div class="add-note-div">
       <div>
         <input type="text" placeholder="Title" class="add-note-input">
-        <textarea placeholder="Note" class="add-note-input"></textarea>
+        <textarea id="add-note-textarea" placeholder="Note" class="add-note-input"></textarea>
       </div>
-      <div class="add-note-preview"></div>
+      <div id="add-note-preview" class="add-note-preview"></div>
     </div>
   </div>
 </body>
