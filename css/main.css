@@ -45,10 +45,19 @@ html, body {
     background: rgba(240,240,240,1);
 }
 
+.add-note-div > div {
+    padding: 5px;
+    width: 50%;
+}
+
 .add-note-input {    
     background: transparent;
     border: none;
     outline: none;
     width: 100%;
     padding: 10px;
+}
+
+.add-note-preview {
+    border-left: 1px solid #000000;
 }
