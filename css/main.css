@@ -1,5 +1,6 @@
-body {
+html, body {
     margin: 0;
+    height: 100%;
     background: rgba(240,240,240,1);
 }
 
@@ -22,4 +23,23 @@ body {
     margin: 10px;
     float: right;
     box-shadow: 0 1px 10px 1px #888;
+}
+
+.add-note-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    background: rgba(240,240,240,0.8);
+}
+
+.add-note-div {    
+    width: 80%;
+    height: 90%;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    background: rgba(240,240,240,1);
 }
