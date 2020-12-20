@@ -7,6 +7,7 @@ const handleMarkdownPreview = function() {
         const result = writer.render(parsed);
 
         const preview = document.querySelector('#add-note-preview');
+        preview.innerHTML = '';
         preview.insertAdjacentHTML('beforeend', result);
     });
 };
