@@ -26,11 +26,12 @@ html, body {
 }
 
 .add-note-overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    position: relative;
+    position: absolute;
     background: rgba(240,240,240,0.8);
 }
 
