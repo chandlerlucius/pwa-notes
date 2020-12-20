@@ -44,3 +44,11 @@ html, body {
     border-radius: 5px;
     background: rgba(240,240,240,1);
 }
+
+.add-note-input {    
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 10px;
+}
