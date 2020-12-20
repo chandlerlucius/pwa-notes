@@ -47,6 +47,7 @@ html, body {
 
 .add-note-div > div {
     padding: 5px;
+    height: 100%;
     width: 50%;
 }
 
