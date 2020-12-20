@@ -39,7 +39,6 @@ html, body {
     width: 80%;
     height: 90%;
     margin: auto;
-    padding: 10px;
     display: flex;
     border-radius: 5px;
     border: 1px solid #888888;
@@ -47,7 +46,6 @@ html, body {
 }
 
 .add-note-div > div {
-    padding: 5px;
     height: 100%;
     width: 50%;
 }
@@ -57,7 +55,6 @@ html, body {
     border: none;
     outline: none;
     width: 100%;
-    padding: 10px;
 }
 
 .add-note-preview {
