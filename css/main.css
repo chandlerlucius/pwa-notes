@@ -35,7 +35,7 @@ html, body {
     background: rgba(240,240,240,0.8);
 }
 
-.add-note-div {    
+.add-note-div {
     width: 80%;
     height: 90%;
     margin: auto;
@@ -50,11 +50,12 @@ html, body {
     width: 50%;
 }
 
-.add-note-input {    
-    background: transparent;
+.add-note-input {
+    width: 100%;  
     border: none;
     outline: none;
-    width: 100%;
+    background: transparent;
+    box-sizing: border-box;
 }
 
 .add-note-preview {
