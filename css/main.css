@@ -52,7 +52,7 @@ html, body {
     flex-flow: column;
 }
 
-.add-note-div > div:nth-child(2) {
+.add-note-div > div > *:nth-child(2) {
     flex: 1 1 auto;
 }
 
