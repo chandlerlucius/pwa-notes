@@ -28,7 +28,7 @@ const displayNotes = function(notes) {
         document.querySelector('#note-container').appendChild(noteClone);
     });
     if(notes.length === 0) {
-        
+        document.querySelector('#welcome-message').classList.add('center');
     }
 }
 
