@@ -2,9 +2,10 @@
 import Constants from './constants.js'
 import Transaction from './transaction.js'
 
-async function displayValidOrBlankNote() {
+async function displayNoteAndPreview() {
     const note = await getNote();
     displayNote(note);
+    displayPreview();
 }
 
 async function getNote() {
@@ -29,16 +30,28 @@ const displayNote = function (note) {
     }
 }
 
-async function updateOrAddNoteToDb(key, value) {
-    const transaction = new Transaction(Constants.PWA_NOTES_DB);
-    const notes = await transaction.updateOrAddToDb(Constants.NOTE_OBJECT_STORE, key, value);
-    return notes;
-}
+const displayPreview = function() {
+    const textarea = document.querySelector(Constants.NOTE_DATA_ID);
+    const reader = new commonmark.Parser();
+    const writer = new commonmark.HtmlRenderer();
+    const parsed = reader.parse(textarea.value);
+    const result = writer.render(parsed);
+
+    const preview = document.querySelector('#note-preview');
+    preview.innerHTML = '';
+    preview.insertAdjacentHTML('beforeend', result);
+};
+
+const setupPreviewEventListeners = function() {
+    const textarea = document.querySelector(Constants.NOTE_DATA_ID);
+    textarea.addEventListener('input', displayPreview);
+};
 
 const addSaveNoteEventListeners = function () {
     document.querySelector(Constants.NOTE_DATA_ID).addEventListener('input', saveNoteOnce, false);
     document.querySelector(Constants.NOTE_TITLE_ID).addEventListener('input', saveNoteOnce, false);
-    window.addEventListener('blur', saveNote);
+    window.addEventListener('focusout', saveNote);
+    window.addEventListener('beforeunload', saveNote);
 }
 
 const saveNoteOnce = function () {
@@ -65,9 +78,16 @@ async function saveNote() {
         noteKey = await updateOrAddNoteToDb(null, value);
     }
     if(noteKey) {
-        sessionStorage.setItem(Constants.NOTE_KEY_SESSION_STORAGE, noteKey)
+        sessionStorage.setItem(Constants.NOTE_KEY_SESSION_STORAGE, noteKey);
     }
 }
 
+async function updateOrAddNoteToDb(key, value) {
+    const transaction = new Transaction(Constants.PWA_NOTES_DB);
+    const notes = await transaction.updateOrAddToDb(Constants.NOTE_OBJECT_STORE, key, value);
+    return notes;
+}
+
+document.addEventListener('DOMContentLoaded', displayNoteAndPreview);
+document.addEventListener('DOMContentLoaded', setupPreviewEventListeners);
 document.addEventListener('DOMContentLoaded', addSaveNoteEventListeners);
-document.addEventListener('DOMContentLoaded', displayValidOrBlankNote);
