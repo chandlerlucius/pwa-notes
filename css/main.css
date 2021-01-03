@@ -4,6 +4,21 @@ html, body {
     background: rgba(240,240,240,1);
 }
 
+.hidden {
+    display: none;
+}
+
+.center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center > div {
+    text-align: center;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
