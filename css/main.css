@@ -4,19 +4,39 @@ html, body {
     background: rgba(240,240,240,1);
 }
 
-.flex-row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flex-column {
-    flex: 25%;
-    max-width: 25%;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
   
 @media (max-width: 800px) {
-    .flex-column {
-        flex: 50%;
-        max-width: 50%;
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
     }
+}
+  
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.note-card {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #888888;
+    transition: box-shadow 0.5s;
+    cursor: pointer;
+    max-height: 30vh;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.note-card > h3 {
+    margin-top: 0;
+}
+
+.note-card:hover {
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
 }
