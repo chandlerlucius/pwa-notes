@@ -1,0 +1,28 @@
+.note-div {
+    height: 100%;
+    margin: auto;
+    display: flex;
+}
+
+.note-div > div {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+
+.note-div > div > *:nth-child(2) {
+    flex: 1 1 auto;
+}
+
+.note-input {
+    width: 100%;  
+    border: none;
+    outline: none;
+    background: transparent;
+    box-sizing: border-box;
+}
+
+.note-preview {
+    border-left: 1px solid #000000;
+}
