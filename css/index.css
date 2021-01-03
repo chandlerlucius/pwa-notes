@@ -16,5 +16,6 @@
     line-height: 50px;
     margin: 10px;
     float: right;
+    cursor: pointer;
     box-shadow: 0 1px 10px 1px #888;
 }
