@@ -3,53 +3,43 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta name="author" content="Chandler Lucius">
+  <meta name="author" content="Chandler Lucius" />
   <meta name="title" content="PWA Notes" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale: 1, maximum-scale: 1" />
   <meta name="description" content="A Progressive Web App for keeping notes" />
 
   <meta name="theme-color" content="#01579B" />
-  <meta name="msapplication-TileColor" content="#FFFFFF">
-  <meta name="msapplication-config" content="../images/icons/browserconfig.xml">
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+  <meta name="msapplication-config" content="./images/icons/browserconfig.xml" />
   
   <title>PWA Starter Template</title>
 
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../images/icons/favicon-16x16.png">
-  <link rel="mask-icon" href="../images/icons/safari-pinned-tab.svg" color="#01579B">
-  <link rel="shortcut icon" href="../images/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="../images/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/icons/favicon-16x16.png" />
+  <link rel="mask-icon" href="../images/icons/safari-pinned-tab.svg" color="#01579B" />
+  <link rel="shortcut icon" href="../images/icons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/icons/apple-touch-icon.png" />
   
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/edit.css">
+
   <script src="../js/commonmark-0.29.min.js"></script>
-  <script src="../js/markdown-preview.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => {
-            console.log('Service worker registered!', reg);
-          })
-          .catch(err => {
-            console.log('Service worker registration failed: ', err);
-          });
-      });
-    }
-  </script>
+  <script type="module" src="../js/markdown-preview.js"></script>
+  <script type="module" src="../js/edit.js"></script>
 </head>
 
 <body>
-  <div class="add-note-div">
+  <div class="note-div">
     <div>
-      <input type="text" placeholder="Title" class="add-note-input">
-      <textarea id="add-note-textarea" placeholder="Note" class="add-note-input"></textarea>
+      <input id="note-title" type="text" placeholder="Title" class="note-input">
+      <textarea id="note-data" placeholder="Note" class="note-input"></textarea>
     </div>
     <div>
-      <div id="add-title-preview" class="add-note-preview"></div>
-      <div id="add-note-preview" class="add-note-preview"></div>
+      <div id="title-preview" class="note-preview"></div>
+      <div id="note-preview" class="note-preview"></div>
     </div>
   </div>
 </body>
