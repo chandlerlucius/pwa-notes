@@ -7,12 +7,18 @@ export default class Transaction {
         this.dbName = dbName;
     }
 
-    async getAllFromDb(objectStoreName) {
+    async getAllFromDb(objectStoreName, indexName) {
         const objectStore = await this.openDbAndGetObjectStore(objectStoreName, this.READ);
 
         return new Promise((accept, reject) => {
-            const request = objectStore.getAll();
-            this.handleRequest(request, accept, reject);
+            let request;
+            if(indexName) {
+                const index = objectStore.index(indexedDB);
+                request = index.openCursor();
+            } else {
+                request = objectStore.openCursor();
+            }
+            this.handleCursorRequest(request, accept, reject);
         });
     }
 
@@ -46,7 +52,8 @@ export default class Transaction {
             request.onupgradeneeded = function() {
                 const db = this.result;
                 if(!db.objectStoreNames.contains(objectStoreName)) {
-                    db.createObjectStore(objectStoreName, {autoIncrement: true});
+                    const objectStore = db.createObjectStore(objectStoreName, {autoIncrement: true});
+                    objectStore.createIndex('created', 'created', {unique: false});
                 }
             }
             this.handleRequest(request, accept, reject);
@@ -60,6 +67,27 @@ export default class Transaction {
         }
         request.onsuccess = function() {
             accept(this.result);
+        }
+    }
+
+    handleCursorRequest(request, accept, reject) {
+        const array = new Array();
+        request.onerror = function() {
+            console.error("Error: ", this.error);
+            reject(this.error)
+        }
+        request.onsuccess = function() {
+            const cursor = this.result;
+            if(cursor) {
+                const data = {
+                    key: cursor.primaryKey,
+                    value: cursor.value
+                };
+                array.push(data);
+                cursor.continue();
+            } else {
+                accept(array);
+            }
         }
     }
 }
