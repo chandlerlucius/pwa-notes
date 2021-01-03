@@ -14,7 +14,7 @@
   <meta name="msapplication-TileColor" content="#FFFFFF" />
   <meta name="msapplication-config" content="./images/icons/browserconfig.xml" />
   
-  <title>PWA Starter Template</title>
+  <title>PWA Notes</title>
 
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="32x32" href="./images/icons/favicon-32x32.png" />
@@ -43,16 +43,16 @@
 </head>
 
 <body>
-  <div id="note-container" class="flex-row"></div>
+  <div id="note-container" class="grid"></div>
   <div class="bottom-navbar">
     <div class="add-note-button">+</div>
   </div>
 </body>
 
 <template id="note-template">
-  <div class="flex-column">
+  <div class="note-card">
     <h3 id="note-title"></h3>
-    <p id="note-data"></p>
+    <span id="note-data"></span>
   </div>
 </template>
 
