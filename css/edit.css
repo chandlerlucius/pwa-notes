@@ -9,6 +9,7 @@
     width: 50%;
     display: flex;
     flex-flow: column;
+    word-wrap: break-word;
 }
 
 .note-div > div > *:nth-child(2) {
