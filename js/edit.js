@@ -1,5 +1,5 @@
 
-import Constants from './constants.js'
+import Constants, { convertToMarkdown } from './constants.js'
 import Transaction from './transaction.js'
 
 async function displayNoteAndPreview() {
@@ -32,14 +32,11 @@ const displayNote = function (note) {
 
 const displayPreview = function() {
     const textarea = document.querySelector(Constants.NOTE_DATA_ID);
-    const reader = new commonmark.Parser();
-    const writer = new commonmark.HtmlRenderer();
-    const parsed = reader.parse(textarea.value);
-    const result = writer.render(parsed);
+    const markdown = convertToMarkdown(textarea.value);
 
     const preview = document.querySelector('#note-preview');
     preview.innerHTML = '';
-    preview.insertAdjacentHTML('beforeend', result);
+    preview.insertAdjacentHTML('beforeend', markdown);
 };
 
 const setupPreviewEventListeners = function() {
