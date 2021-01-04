@@ -1,5 +1,5 @@
 
-import Constants from './constants.js'
+import Constants, { convertToMarkdown } from './constants.js'
 import Transaction from './transaction.js'
 
 async function setupNotesAndEvents() {
@@ -24,7 +24,8 @@ const displayNotes = function(notes) {
         const noteClone = noteTemplate.content.cloneNode(true);
         noteClone.querySelector(Constants.NOTE_TITLE_ID).key = note.key;
         noteClone.querySelector(Constants.NOTE_TITLE_ID).innerHTML = note.value.title;
-        noteClone.querySelector(Constants.NOTE_DATA_ID).innerHTML = note.value.data;
+        const markdown = convertToMarkdown(note.value.data);
+        noteClone.querySelector(Constants.NOTE_DATA_ID).innerHTML = markdown;
         document.querySelector('#note-container').appendChild(noteClone);
     });
     if(notes.length === 0) {
