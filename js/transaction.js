@@ -1,14 +1,15 @@
 
+const READ = 'readonly';
+const READ_WRITE = 'readwrite';
+
 export default class Transaction {
-    READ = 'readonly';
-    READ_WRITE = 'readwrite';
 
     constructor(dbName) {
         this.dbName = dbName;
     }
 
     async getAllFromDb(objectStoreName, indexName) {
-        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, this.READ);
+        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, READ);
 
         return new Promise((accept, reject) => {
             let request;
@@ -23,7 +24,7 @@ export default class Transaction {
     }
 
     async getOneFromDb(objectStoreName, key) {
-        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, this.READ);
+        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, READ);
 
         return new Promise((accept, reject) => {
             const request = objectStore.get(key);
@@ -32,7 +33,7 @@ export default class Transaction {
     }
 
     async updateOrAddToDb(objectStoreName, key, value) {
-        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, this.READ_WRITE);
+        const objectStore = await this.openDbAndGetObjectStore(objectStoreName, READ_WRITE);
 
         return new Promise((accept, reject) => {
             const request = key ? objectStore.put(value, key) : objectStore.put(value);

@@ -1,5 +1,12 @@
 
-import Constants, { convertToMarkdown } from './constants.js'
+import {
+    PWA_NOTES_DB,
+    NOTE_OBJECT_STORE,
+    NOTE_KEY_SESSION_STORAGE, 
+    NOTE_DATA_ID, 
+    NOTE_TITLE_ID, 
+    convertToMarkdown
+} from './constants.js'
 import Transaction from './transaction.js'
 
 async function displayNoteAndPreview() {
@@ -9,7 +16,7 @@ async function displayNoteAndPreview() {
 }
 
 async function getNote() {
-    const noteKey = parseInt(sessionStorage.getItem(Constants.NOTE_KEY_SESSION_STORAGE));
+    const noteKey = parseInt(sessionStorage.getItem(NOTE_KEY_SESSION_STORAGE));
     if (Number.isInteger(noteKey)) {
         let note = await getNoteFromDb(noteKey);
         note.key = noteKey;
@@ -18,20 +25,20 @@ async function getNote() {
 }
 
 async function getNoteFromDb(noteKey) {
-    const transaction = new Transaction(Constants.PWA_NOTES_DB);
-    const note = await transaction.getOneFromDb(Constants.NOTE_OBJECT_STORE, noteKey);
+    const transaction = new Transaction(PWA_NOTES_DB);
+    const note = await transaction.getOneFromDb(NOTE_OBJECT_STORE, noteKey);
     return note;
 }
 
 const displayNote = function (note) {
     if (note) {
-        document.querySelector(Constants.NOTE_DATA_ID).value = note.data;
-        document.querySelector(Constants.NOTE_TITLE_ID).value = note.title;
+        document.querySelector(NOTE_DATA_ID).value = note.data;
+        document.querySelector(NOTE_TITLE_ID).value = note.title;
     }
 }
 
-const displayPreview = function() {
-    const textarea = document.querySelector(Constants.NOTE_DATA_ID);
+const displayPreview = function () {
+    const textarea = document.querySelector(NOTE_DATA_ID);
     const markdown = convertToMarkdown(textarea.value);
 
     const preview = document.querySelector('#note-preview');
@@ -39,27 +46,27 @@ const displayPreview = function() {
     preview.insertAdjacentHTML('beforeend', markdown);
 };
 
-const setupPreviewEventListeners = function() {
-    const textarea = document.querySelector(Constants.NOTE_DATA_ID);
+const setupPreviewEventListeners = function () {
+    const textarea = document.querySelector(NOTE_DATA_ID);
     textarea.addEventListener('input', displayPreview);
 };
 
 const addSaveNoteEventListeners = function () {
-    document.querySelector(Constants.NOTE_DATA_ID).addEventListener('input', saveNoteOnce, false);
-    document.querySelector(Constants.NOTE_TITLE_ID).addEventListener('input', saveNoteOnce, false);
+    document.querySelector(NOTE_DATA_ID).addEventListener('input', saveNoteOnce, false);
+    document.querySelector(NOTE_TITLE_ID).addEventListener('input', saveNoteOnce, false);
     window.addEventListener('focusout', saveNote);
     window.addEventListener('beforeunload', saveNote);
 }
 
 const saveNoteOnce = function () {
     saveNote();
-    document.querySelector(Constants.NOTE_DATA_ID).removeEventListener('input', saveNoteOnce, false);
-    document.querySelector(Constants.NOTE_TITLE_ID).removeEventListener('input', saveNoteOnce, false);
+    document.querySelector(NOTE_DATA_ID).removeEventListener('input', saveNoteOnce, false);
+    document.querySelector(NOTE_TITLE_ID).removeEventListener('input', saveNoteOnce, false);
 }
 
 async function saveNote() {
-    const noteData = document.querySelector(Constants.NOTE_DATA_ID).value;
-    const noteTitle = document.querySelector(Constants.NOTE_TITLE_ID).value;
+    const noteData = document.querySelector(NOTE_DATA_ID).value;
+    const noteTitle = document.querySelector(NOTE_TITLE_ID).value;
     const note = await getNote();
     let value = {
         title: noteTitle,
@@ -74,14 +81,14 @@ async function saveNote() {
         value.created = new Date();
         noteKey = await updateOrAddNoteToDb(null, value);
     }
-    if(noteKey) {
-        sessionStorage.setItem(Constants.NOTE_KEY_SESSION_STORAGE, noteKey);
+    if (noteKey) {
+        sessionStorage.setItem(NOTE_KEY_SESSION_STORAGE, noteKey);
     }
 }
 
 async function updateOrAddNoteToDb(key, value) {
-    const transaction = new Transaction(Constants.PWA_NOTES_DB);
-    const notes = await transaction.updateOrAddToDb(Constants.NOTE_OBJECT_STORE, key, value);
+    const transaction = new Transaction(PWA_NOTES_DB);
+    const notes = await transaction.updateOrAddToDb(NOTE_OBJECT_STORE, key, value);
     return notes;
 }
 
