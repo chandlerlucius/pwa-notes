@@ -5,6 +5,8 @@ import {
     NOTE_KEY_SESSION_STORAGE, 
     NOTE_DATA_ID, 
     NOTE_TITLE_ID, 
+    EDIT_PANE_ID, 
+    VIEW_PANE_ID, 
     convertToMarkdown
 } from './constants.js'
 import Transaction from './transaction.js'
@@ -37,19 +39,41 @@ const displayNote = function (note) {
     }
 }
 
-const displayPreview = function () {
+const setupPreviewEventListeners = function () {
     const textarea = document.querySelector(NOTE_DATA_ID);
-    const markdown = convertToMarkdown(textarea.value);
+    textarea.addEventListener('input', displayPreview);
+}
+
+const displayPreview = function () {
+    const noteTitle = document.querySelector(NOTE_TITLE_ID);
+    document.querySelector('#title-preview').innerHTML = noteTitle.value;
+
+    const noteData = document.querySelector(NOTE_DATA_ID);
+    const markdown = convertToMarkdown(noteData.value);
 
     const preview = document.querySelector('#note-preview');
     preview.innerHTML = '';
     preview.insertAdjacentHTML('beforeend', markdown);
-};
+}
 
-const setupPreviewEventListeners = function () {
-    const textarea = document.querySelector(NOTE_DATA_ID);
-    textarea.addEventListener('input', displayPreview);
-};
+const setupButtonEventListeners = function() {
+    document.querySelector('#edit-button').addEventListener('click', function() {
+        document.querySelector(EDIT_PANE_ID).style.width = '100%';
+        document.querySelector(VIEW_PANE_ID).style.width = '0';
+    });
+    document.querySelector('#view-button').addEventListener('click', function() {
+        document.querySelector(EDIT_PANE_ID).style.width = '0';
+        document.querySelector(VIEW_PANE_ID).style.width = '100%';
+    });
+    document.querySelector('#preview-button').addEventListener('click', function() {
+        document.querySelector(EDIT_PANE_ID).style.width = '50%';
+        document.querySelector(VIEW_PANE_ID).style.width = '50%';
+    });
+    document.querySelector('#save-button').addEventListener('click', function() {
+        saveNote();
+        window.location.href = '/';
+    });
+}
 
 const addSaveNoteEventListeners = function () {
     document.querySelector(NOTE_DATA_ID).addEventListener('input', saveNoteOnce, false);
@@ -94,4 +118,5 @@ async function updateOrAddNoteToDb(key, value) {
 
 document.addEventListener('DOMContentLoaded', displayNoteAndPreview);
 document.addEventListener('DOMContentLoaded', setupPreviewEventListeners);
+document.addEventListener('DOMContentLoaded', setupButtonEventListeners);
 document.addEventListener('DOMContentLoaded', addSaveNoteEventListeners);
