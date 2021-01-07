@@ -71,7 +71,7 @@ const setupButtonEventListeners = function() {
     });
     document.querySelector('#save-button').addEventListener('click', function() {
         saveNote();
-        window.location.href = '/';
+        window.location.href = '../';
     });
 }
 
