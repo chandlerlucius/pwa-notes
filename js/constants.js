@@ -11,8 +11,7 @@ export const EDIT_PANE_ID = '#edit-pane';
 export const VIEW_PANE_ID = '#view-pane';
 
 export const convertToMarkdown = function(data) {
-    const reader = new commonmark.Parser();
-    const writer = new commonmark.HtmlRenderer();
-    const parsed = reader.parse(data);
-    return writer.render(parsed);
+    var lexed = marked.lexer(data);
+    var parsed = marked.parser(lexed);
+    return parsed;
 }
