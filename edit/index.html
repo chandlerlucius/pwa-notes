@@ -7,7 +7,7 @@
 
   <meta name="author" content="Chandler Lucius" />
   <meta name="title" content="PWA Notes" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta name="description" content="A Progressive Web App for keeping notes" />
 
   <meta name="theme-color" content="#01579B" />
@@ -31,16 +31,24 @@
 </head>
 
 <body>
-  <div class="note-div">
-    <div>
+  <header>
+    <button id="edit-button">Edit</button>
+    <button id="view-button">View</button>
+    <button id="preview-button">Preview</button>
+  </header>
+  <main>
+    <div id="edit-pane">
       <input id="note-title" type="text" placeholder="Title" class="note-input">
       <textarea id="note-data" placeholder="Note" class="note-input"></textarea>
     </div>
-    <div>
+    <div id="view-pane">
       <div id="title-preview" class="note-preview"></div>
       <div id="note-preview" class="note-preview"></div>
     </div>
-  </div>
+  </main>
+  <footer>
+    <button id="save-button">Save</button>
+  </footer>
 </body>
 
 </html>
