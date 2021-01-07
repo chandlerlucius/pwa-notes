@@ -1,20 +1,34 @@
-.note-div {
-    height: 100%;
-    margin: auto;
+body {
     display: flex;
+    flex-direction: column;
 }
 
-.note-div > div {
+header {
+    border-bottom: 1px solid #000;
+}
+
+footer {
+    border-top: 1px solid #000;
+}
+
+main {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+}
+
+main > div {
     height: 100%;
     width: 50%;
-    overflow: scroll;
     display: flex;
     flex-flow: column;
     word-wrap: break-word;
+    transition: 1s;
 }
 
-.note-div > div > *:nth-child(2) {
+main > div > *:nth-child(2) {
     flex: 1 1 auto;
+    overflow-x: hidden;
 }
 
 .note-input {
@@ -23,6 +37,7 @@
     outline: none;
     background: transparent;
     box-sizing: border-box;
+    resize: none;
 }
 
 .note-preview {
