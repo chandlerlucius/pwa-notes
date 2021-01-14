@@ -4,7 +4,7 @@
     "name": "PWA Notes",
     "scope": ".",
     "display": "standalone",
-    "start_url": "https://pwanotes.ga",
+    "start_url": "/",
     "short_name": "PWA Notes",
     "theme_color": "#01579B",
     "description": "A Progressive Web App for keeping notes",
